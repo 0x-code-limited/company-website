@@ -4,8 +4,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="p-8 text-white">
+    <footer className="max-w-5xl mx-auto">
+      <div className="py-8 px-4 text-white">
         <div className="flex flex-col md:flex-row pb-3">
           <div className="w-full md:w-1/4 mb-4 md:mb-0">
             <Link href="/" passHref>
@@ -23,9 +23,7 @@ const Footer = () => {
               <li>
                 <Link href="/about">About Us</Link>
               </li>
-              <li>
-                <Link href="/contact">Contact Us</Link>
-              </li>
+
               <li>
                 <Link href="/better-bc-assessment/privacy">Privacy Policy</Link>
               </li>

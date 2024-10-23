@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Projects from "../ui/sections/projects";
 import Hero from "../ui/sections/hero";
+import KampNearMe from "../sections/KampNearMe";
+import BetterBCAssessment from "../sections/BetterBCAssessment";
 
 const Home: NextPage = () => {
   return (
@@ -18,13 +20,14 @@ const Home: NextPage = () => {
 
         <Projects
           title="Better BC Assessment"
-          description="Better BC Assessment is a mobile app that helps you to find your property assessment value in British Columbia. It is a simple and easy to use app."
+          description={<BetterBCAssessment />}
           imageUrl="/better-bc-assessment.png"
           imageAlt="Better BC Assessment mobile project screen shot"
+          url="/better-bc-assessment"
         />
         <Projects
           title="Kampnearme.com"
-          description="Kampnearme.com is a project we are working on. It is a camping site map base search platform. We are using latest technology to provide a smooth user experience for our users."
+          description={<KampNearMe />}
           imageUrl="/kampnearme.jpg"
           imageAlt="Kampnearme.com project screen shot"
         />

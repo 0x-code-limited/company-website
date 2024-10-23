@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {
   title: string;
-  description: string;
+  description: React.ReactNode;
+  url?: string;
   imageUrl: string;
   imageAlt: string;
 };
@@ -16,7 +18,7 @@ const Projects = (props: Props) => {
           <Image
             src={props.imageUrl}
             alt={props.imageAlt}
-            layout="intrinsic"
+            layout="responsive"
             width={256} // Set a smaller width for small screens
             height={256} // Set a smaller height for small screens
             className="w-96 h-96 md:w-96 md:h-96 lg:w-512 lg:h-512" // Adjust the width and height for different screen sizes
@@ -24,9 +26,9 @@ const Projects = (props: Props) => {
         </div>
         <div className="w-full md:w-1/2 p-4 flex flex-col">
           <h3 className="text-2xl md:text-3xl font-semibold mt-5 mb-5">
-            {props.title}
+            <Link href={props.url ?? "#"}>{props.title}</Link>
           </h3>
-          <div>{props.description}</div>
+          {props.description}
         </div>
       </div>
     </section>

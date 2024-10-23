@@ -7,7 +7,7 @@ type Props = {};
 const Navbar = (props: Props) => {
   return (
     <header className="bg-theme-yellow text-black p-4">
-      <div className="flex flex-row h-16">
+      <div className="flex flex-row h-16 max-w-5xl mx-auto">
         <div className="w-1/2">
           <Link href="/" passHref>
             <Image
@@ -26,9 +26,6 @@ const Navbar = (props: Props) => {
               </li>
               <li className="mr-4">
                 <Link href="/about">About</Link>
-              </li>
-              <li className="mr-4">
-                <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </nav>
