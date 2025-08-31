@@ -1,0 +1,22 @@
+[
+  {
+    "title": "KampNearMe",
+    "id": "kampnearme",
+    "description": "Location-based mobile app for discovering campgrounds with offline access.",
+    "image": "/images/kampnearme.jpg",
+    "href": "https://kampnearme.com"
+  },
+  {
+    "title": "Better BC Assessment",
+    "id": "better-bc-assessment",
+    "description": "Web platform improving user access to assessment data with clear visuals.",
+    "image": "/images/better-bc-assessment.png"
+  },
+  {
+    "title": "Sync Player App",
+    "id": "sync-player",
+    "description": "Modern Sync video player for watching movies together and share it with your friends.",
+    "image": "/images/sync-player.png",
+    "href": "https://sync-players.vercel.app/"
+  }
+]
