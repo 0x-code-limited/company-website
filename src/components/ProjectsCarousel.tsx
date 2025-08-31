@@ -74,11 +74,14 @@ export default function ProjectsCarousel({ items }: { items: Project[] }) {
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold mb-1">{project.title}</h3>
-                  <p className="text-sm text-foreground/80 mb-2">
+                  <p className="text-sm text-foreground/80 mb-2 line-clamp-3">
                     {project.description}
                   </p>
                   <Link
                     href={project.href ? project.href : `/${project.id}`}
+                    target={project.href ? "_blank" : undefined}
+                    aria-label={`Learn more about ${project.title}`}
+                    rel={project.href ? "noopener noreferrer" : undefined}
                     className="text-sm hover:underline hover:underline-offset-4"
                   >
                     Learn more →
