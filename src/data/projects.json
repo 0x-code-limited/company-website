@@ -13,6 +13,13 @@
     "image": "/images/better-bc-assessment.png"
   },
   {
+    "title": "Canadian Citizenship Test",
+    "id": "canadian-citizenship-test",
+    "description": "Prepare with confidence using our comprehensive study guides and practice tests. Our platform covers all 11 categories from the official “Discover Canada“ guide.",
+    "image": "/images/canadian-citizenship-test.png",
+    "href": "https://canada-citizenship.ca/"
+  },
+  {
     "title": "Sync Player App",
     "id": "sync-player",
     "description": "Modern Sync video player for watching movies together and share it with your friends.",
