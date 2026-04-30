@@ -6,6 +6,14 @@ export default function ExchangeWidgetPage() {
     <main className="font-sans min-h-screen">
       <section className="px-6 sm:px-8 py-12 sm:py-20">
         <div className="max-w-5xl mx-auto grid gap-8">
+          <Link
+            href="/#projects"
+            className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground hover:underline hover:underline-offset-4 w-fit"
+            aria-label="Back to projects"
+          >
+            <span aria-hidden="true">←</span>
+            Back
+          </Link>
           <div className="flex items-center gap-3">
             <Image
               src="/images/exchange-widget.png"
