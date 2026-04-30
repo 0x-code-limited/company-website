@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,68 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="px-6 sm:px-8 py-4 border-b border-black/[.06] dark:border-white/[.08]">
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/images/0x-code-limited-icon.png"
-                alt="0x Code Limited"
-                width={28}
-                height={28}
-                priority
-              />
-              <span className="font-medium">0x Code Limited</span>
-            </Link>
-            <nav className="flex items-center gap-4 text-sm">
-              <Link
-                href="/#services"
-                className="hover:underline hover:underline-offset-4"
-              >
-                Services
-              </Link>
-              <Link
-                href="/#projects"
-                className="hover:underline hover:underline-offset-4"
-              >
-                Projects
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <Header />
         {children}
-        <footer className="px-6 sm:px-8 py-10 border-t border-black/[.06] dark:border-white/[.08]">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/0x-code-limited-icon.png"
-                alt="0x Code Limited"
-                width={24}
-                height={24}
-              />
-              <span>© {new Date().getFullYear()} 0x Code Limited</span>
-            </div>
-            <nav className="flex items-center gap-4">
-              <Link
-                href="/#services"
-                className="hover:underline hover:underline-offset-4"
-              >
-                Services
-              </Link>
-              <Link
-                href="/#projects"
-                className="hover:underline hover:underline-offset-4"
-              >
-                Projects
-              </Link>
-              <Link
-                href="/privacy.html"
-                className="hover:underline hover:underline-offset-4"
-              >
-                Privacy
-              </Link>
-            </nav>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
