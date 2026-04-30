@@ -102,7 +102,7 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center">
             <a
-              href="mailto:contact@0xcode.ca"
+              href="mailto:info@0x.company"
               className="rounded-full bg-foreground text-background px-6 py-3 font-medium hover:opacity-90 transition"
             >
               Contact us
