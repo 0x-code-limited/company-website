@@ -25,5 +25,11 @@
     "description": "Modern Sync video player for watching movies together and share it with your friends.",
     "image": "/images/sync-player.png",
     "href": "https://sync-players.vercel.app/"
+  },
+  {
+    "title": "Exchange Widget",
+    "id": "exchange-widget",
+    "description": "Home-screen currency exchange widget for iOS and Android with live rates and quick-glance conversions for your favorite pairs.",
+    "image": "/images/exchange-widget.png"
   }
 ]
