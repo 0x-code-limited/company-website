@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export type Project = {
   id: string;
@@ -12,23 +12,56 @@ export type Project = {
   href?: string;
 };
 
+const SCROLL_BY = 420; // image 400 + gap
+const ADVANCE_INTERVAL_MS = 4000;
+
 export default function ProjectsCarousel({ items }: { items: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const scrollByAmount = 420; // image 400 + gap
+  const pausedRef = useRef(false);
 
   const scrollLeft = () => {
     containerRef.current?.scrollBy({
-      left: -scrollByAmount,
+      left: -SCROLL_BY,
       behavior: "smooth",
     });
   };
 
   const scrollRight = () => {
     containerRef.current?.scrollBy({
-      left: scrollByAmount,
+      left: SCROLL_BY,
       behavior: "smooth",
     });
+  };
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduceMotion) return;
+
+    const id = window.setInterval(() => {
+      if (pausedRef.current) return;
+      const node = containerRef.current;
+      if (!node) return;
+      const maxScroll = node.scrollWidth - node.clientWidth;
+      const atEnd = node.scrollLeft >= maxScroll - 1;
+      node.scrollTo({
+        left: atEnd ? 0 : node.scrollLeft + SCROLL_BY,
+        behavior: "smooth",
+      });
+    }, ADVANCE_INTERVAL_MS);
+
+    return () => window.clearInterval(id);
+  }, []);
+
+  const pause = () => {
+    pausedRef.current = true;
+  };
+  const resume = () => {
+    pausedRef.current = false;
   };
 
   return (
@@ -53,6 +86,12 @@ export default function ProjectsCarousel({ items }: { items: Project[] }) {
       </div>
       <div
         ref={containerRef}
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onFocusCapture={pause}
+        onBlurCapture={resume}
+        onTouchStart={pause}
+        onTouchEnd={resume}
         className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none]"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
@@ -60,9 +99,9 @@ export default function ProjectsCarousel({ items }: { items: Project[] }) {
           {items.map((project, idx) => (
             <article
               key={`${project.title}-${idx}`}
-              className="snap-start flex-shrink-0 w-[400px]"
+              className="snap-start flex-shrink-0 w-[400px] flex"
             >
-              <div className="rounded-2xl overflow-hidden border border-black/[.08] dark:border-white/[.145]">
+              <div className="flex flex-col w-full rounded-2xl overflow-hidden border border-black/[.08] dark:border-white/[.145]">
                 <div className="bg-black/[.04] dark:bg-white/[.04]">
                   <Image
                     src={project.image}
@@ -72,7 +111,7 @@ export default function ProjectsCarousel({ items }: { items: Project[] }) {
                     className="w-[400px] h-[400px] object-cover"
                   />
                 </div>
-                <div className="p-4">
+                <div className="p-4 flex flex-col flex-1">
                   <h3 className="font-semibold mb-1">{project.title}</h3>
                   <p className="text-sm text-foreground/80 mb-2 line-clamp-3">
                     {project.description}
@@ -82,7 +121,7 @@ export default function ProjectsCarousel({ items }: { items: Project[] }) {
                     target={project.href ? "_blank" : undefined}
                     aria-label={`Learn more about ${project.title}`}
                     rel={project.href ? "noopener noreferrer" : undefined}
-                    className="text-sm hover:underline hover:underline-offset-4"
+                    className="text-sm hover:underline hover:underline-offset-4 mt-auto"
                   >
                     Learn more →
                   </Link>
