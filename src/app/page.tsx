@@ -79,9 +79,7 @@ export default function Home() {
       >
         <div className="max-w-6xl mx-auto">
           <div className="flex items-end justify-between gap-4 mb-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold">
-              Selected Projects
-            </h2>
+            <h2 className="text-2xl sm:text-3xl font-semibold">Projects</h2>
           </div>
           <ProjectsCarousel items={projects as Project[]} />
         </div>
@@ -110,7 +108,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
