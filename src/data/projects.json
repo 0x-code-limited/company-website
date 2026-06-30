@@ -1,35 +1,114 @@
 [
   {
-    "title": "KampNearMe",
-    "id": "kampnearme",
-    "description": "Location-based mobile app for discovering campgrounds with offline access.",
-    "image": "/images/kampnearme.jpg",
-    "href": "https://kampnearme.com"
+    "id": "milemark",
+    "title": "Milemark",
+    "initials": "MM",
+    "featured": true,
+    "summary": "A location-based website and mobile app for discovering campgrounds, with full access for the backcountry where signal disappears.",
+    "tags": ["Web App", "Mobile", "iOS · Android"],
+    "type": "Mobile App",
+    "platform": "iOS · Android",
+    "service": "Mobile Development",
+    "href": "https://milemark.camp",
+    "lead": "Discover campgrounds near you — even when you are off the grid.",
+    "overview": [
+      "Milemark helps people find campgrounds around them with a fast, location-aware mobile experience. The core challenge was the backcountry itself: the places people most want to camp are exactly where cell signal disappears.",
+      "We built the app offline-first, so maps and campground data stay available with no connection at all, and tuned it for native-quality performance on both iOS and Android."
+    ],
+    "highlights": [
+      "Location-based campground discovery",
+      "Full offline access — maps and data without any signal",
+      "Native-quality performance across iOS and Android"
+    ]
   },
   {
-    "title": "Better BC Assessment",
     "id": "better-bc-assessment",
-    "description": "Web platform improving user access to assessment data with clear visuals.",
-    "image": "/images/better-bc-assessment.png"
+    "title": "Better BC Assessment",
+    "initials": "BCA",
+    "summary": "A web platform improving user access to property assessment data with clear, usable visuals.",
+    "tags": ["Web Platform"],
+    "type": "Web Platform",
+    "platform": "Web",
+    "service": "Custom Software",
+    "image": "/images/better-bc-assessment.png",
+    "appStore": "https://apps.apple.com/ca/app/better-bc-assessment/id6504163154",
+    "googlePlay": "https://play.google.com/store/apps/details?id=com.oxcode.betterbcassessment",
+    "lead": "Making property assessment data clear, searchable, and genuinely usable.",
+    "overview": [
+      "Better BC Assessment is a web platform that improves how people access and understand property assessment data — turning dense public records into something readable at a glance.",
+      "We focused on clear visualizations and a structure that scales comfortably with large datasets, so the experience stays fast no matter how much data sits behind it."
+    ],
+    "highlights": [
+      "Clean, accessible data visualizations",
+      "Faster access to assessment records",
+      "Built to scale with large public datasets"
+    ]
   },
   {
-    "title": "Canadian Citizenship Test",
     "id": "canadian-citizenship-test",
-    "description": "Prepare with confidence using our comprehensive study guides and practice tests. Our platform covers all 11 categories from the official “Discover Canada“ guide.",
+    "title": "Canadian Citizenship Test",
+    "initials": "CCT",
+    "summary": "Study guides and practice tests covering all 11 categories of the official \"Discover Canada\" guide.",
+    "tags": ["Web", "Education"],
+    "type": "Web App",
+    "platform": "Web",
+    "service": "Custom Software",
     "image": "/images/canadian-citizenship-test.png",
-    "href": "https://canada-citizenship.ca/"
+    "href": "https://canada-citizenship.ca/",
+    "lead": "Prepare for the citizenship test with confidence.",
+    "overview": [
+      "A study platform that helps people prepare for the Canadian citizenship test, covering all 11 categories from the official \"Discover Canada\" guide.",
+      "Comprehensive study guides sit alongside practice tests, with clear progress so learners always know where they stand and what to review next."
+    ],
+    "highlights": [
+      "Covers all 11 official \"Discover Canada\" categories",
+      "Comprehensive study guides and practice tests",
+      "Clear progress tracking for confident preparation"
+    ]
   },
   {
-    "title": "Sync Player App",
     "id": "sync-player",
-    "description": "Modern Sync video player for watching movies together and share it with your friends.",
+    "title": "Sync Player App",
+    "initials": "SYNC",
+    "summary": "A modern sync video player for watching movies together in real time and sharing with friends.",
+    "tags": ["Web App"],
+    "type": "Web App",
+    "platform": "Web",
+    "service": "Custom Software",
     "image": "/images/sync-player.png",
-    "href": "https://sync-players.vercel.app/"
+    "href": "https://sync-players.vercel.app/",
+    "lead": "Watch movies together, perfectly in sync.",
+    "overview": [
+      "Sync Player lets friends watch movies together in real time, keeping everyone's playback in lockstep no matter where they are.",
+      "Share a room in a single click and the modern, responsive player handles the rest — designed to feel effortless on any screen."
+    ],
+    "highlights": [
+      "Real-time synchronized playback",
+      "Share a room with friends in one click",
+      "Modern, responsive web player"
+    ]
   },
   {
-    "title": "Exchange Widget",
     "id": "exchange-widget",
-    "description": "Home-screen currency exchange widget for iOS and Android with live rates and quick-glance conversions for your favorite pairs.",
-    "image": "/images/exchange-widget.png"
+    "title": "Exchange Widget",
+    "initials": "FX",
+    "summary": "A home-screen currency exchange widget with live rates and quick-glance conversions.",
+    "tags": ["Widget", "iOS · Android"],
+    "type": "Home-screen Widget",
+    "platform": "iOS · Android",
+    "service": "Mobile Development",
+    "image": "/images/exchange-widget.png",
+    "appStore": "https://apps.apple.com/us/app/exchangewidget/id6762816436",
+    "googlePlay": "https://play.google.com/store/apps/details?id=com.zeroxcode.exchangewidget",
+    "lead": "Live exchange rates, right on your home screen.",
+    "overview": [
+      "Exchange Widget brings live currency conversion to the home screen, so the rates you care about are a glance away — no app to open.",
+      "Pin your favorite pairs and the widget keeps them current, optimized to stay light and reliable within the constraints of iOS and Android widgets."
+    ],
+    "highlights": [
+      "Home-screen widget for iOS and Android",
+      "Live rates with quick-glance conversions",
+      "Pin and track your favorite currency pairs"
+    ]
   }
 ]

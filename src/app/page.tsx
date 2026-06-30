@@ -1,112 +1,149 @@
-import Image from "next/image";
 import Link from "next/link";
-import ProjectsCarousel, { type Project } from "@/components/ProjectsCarousel";
-import projects from "@/data/projects.json";
-import ServiceCard from "@/components/ServiceCard";
+import Button from "@/components/ox/Button";
+import Card from "@/components/ox/Card";
+import CTABanner from "@/components/ox/CTABanner";
+import Eyebrow from "@/components/ox/Eyebrow";
+import ProjectMedia from "@/components/ox/ProjectMedia";
+import SectionDivider from "@/components/ox/SectionDivider";
+import TerminalWindow from "@/components/ox/TerminalWindow";
+import { projects } from "@/lib/projects";
+
+const services: [id: string, title: string, body: string][] = [
+  ["0x01", "Custom Software", "Web and backend apps tailored to your business with clean, testable, maintainable code."],
+  ["0x02", "Cloud & DevOps", "Cloud architecture, CI/CD, and infrastructure-as-code for reliability at scale."],
+  ["0x03", "Mobile Development", "Native-quality iOS and Android apps with modern tooling and real-world performance."],
+  ["0x04", "AI & Data", "Practical AI integrations, data pipelines, and analytics that drive real impact."],
+];
 
 export default function Home() {
+  const preview = projects.slice(0, 3);
+
   return (
-    <main className="font-sans min-h-screen">
-      {/* Hero */}
-      <section className="px-6 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto grid gap-10 sm:gap-12 text-center">
-          <div className="flex items-center justify-center">
-            <Image
-              src="/images/0x-code-limited-logo.png"
-              alt="0x Code Limited Logo"
-              width={160}
-              height={160}
-              priority
-            />
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight">
-            Building reliable, scalable software for modern businesses
+    <main className="ox-container">
+      {/* hero */}
+      <section className="ox-hero">
+        <div>
+          <Eyebrow style={{ marginBottom: 24 }}>0x_code_limited</Eyebrow>
+          <h1
+            className="ox-h1"
+            style={{ font: "700 56px/1.06 var(--ox-font-sans)", letterSpacing: "-.02em", margin: "0 0 26px", color: "var(--ox-ink)" }}
+          >
+            Building reliable, scalable software for{" "}
+            <span style={{ color: "var(--ox-accent)" }}>modern businesses.</span>
           </h1>
-          <p className="text-base sm:text-lg text-foreground/80 max-w-2xl mx-auto">
-            0x Code Limited is an IT company specializing in custom software,
-            cloud infrastructure, and product development. We turn complex
-            problems into elegant, maintainable solutions.
+          <p
+            style={{ font: "400 17px/1.65 var(--ox-font-sans)", color: "var(--ox-text-muted)", maxWidth: 480, margin: "0 0 36px" }}
+          >
+            We&apos;re an IT company specializing in custom software, cloud infrastructure, and product development —
+            turning complex problems into elegant, maintainable solutions.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link
-              href="#contact"
-              className="rounded-full bg-foreground text-background px-5 py-3 text-sm sm:text-base font-medium hover:opacity-90 transition"
-            >
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <Button href="/contact" arrow>
               Start a project
+            </Button>
+            <Button href="/projects" variant="secondary">
+              Our work
+            </Button>
+          </div>
+        </div>
+        <TerminalWindow title="~/0x-code — build">
+          <div style={{ color: "var(--ox-text-faint)" }}>
+            <span style={{ color: "var(--ox-accent)" }}>$</span> 0x deploy --prod
+          </div>
+          <div style={{ color: "var(--ox-muted)" }}>
+            → compiling services ........ <span style={{ color: "var(--ox-success)" }}>ok</span>
+          </div>
+          <div style={{ color: "var(--ox-muted)" }}>
+            → provisioning cloud ....... <span style={{ color: "var(--ox-success)" }}>ok</span>
+          </div>
+          <div style={{ color: "var(--ox-muted)" }}>
+            → running tests <span style={{ color: "var(--ox-text)" }}>428 passed</span>{" "}
+            <span style={{ color: "var(--ox-success)" }}>ok</span>
+          </div>
+          <div style={{ color: "var(--ox-muted)" }}>
+            → shipping build <span style={{ color: "var(--ox-accent)" }}>0x4F2A1</span> ....{" "}
+            <span style={{ color: "var(--ox-success)" }}>ok</span>
+          </div>
+          <div style={{ color: "var(--ox-text)", marginTop: 8 }}>
+            deployed in <span style={{ color: "var(--ox-accent)" }}>68.84s</span> — zero downtime{" "}
+            <span className="ox-cursor" />
+          </div>
+        </TerminalWindow>
+      </section>
+
+      {/* services */}
+      <section style={{ padding: "8px 0 96px" }}>
+        <SectionDivider label="0x.services" meta="04 capabilities" style={{ marginBottom: 40 }} />
+        <div className="ox-services">
+          {services.map(([id, title, body]) => (
+            <div key={id} style={{ background: "var(--ox-cell)", padding: "34px 32px" }}>
+              <div style={{ font: "500 12px var(--ox-font-mono)", color: "var(--ox-accent)", marginBottom: 18 }}>{id}</div>
+              <h3 style={{ font: "600 21px var(--ox-font-sans)", margin: "0 0 10px", color: "var(--ox-ink)" }}>{title}</h3>
+              <p style={{ font: "400 14.5px/1.6 var(--ox-font-sans)", color: "var(--ox-text-muted)", margin: 0 }}>{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* projects preview */}
+      <section style={{ padding: "0 0 96px" }}>
+        <SectionDivider
+          label="0x.projects"
+          meta={
+            <Link href="/projects" className="ox-link-muted" style={{ font: "500 12px var(--ox-font-mono)" }}>
+              view all →
             </Link>
-            <Link
-              href="#services"
-              className="rounded-full border border-black/[.08] dark:border-white/[.145] px-5 py-3 text-sm sm:text-base font-medium hover:bg-black/[.03] dark:hover:bg-white/[.06] transition"
-            >
-              Our services
-            </Link>
-          </div>
+          }
+          style={{ marginBottom: 40 }}
+        />
+        <div className="ox-preview">
+          {preview.map((p) => (
+            <Card key={p.id} href={`/projects/${p.id}`} interactive padded={false} radius={12}>
+              <ProjectMedia
+                initials={p.initials}
+                image={p.image}
+                height={150}
+                fontSize={30}
+                inset={10}
+                size={14}
+                sizes="(max-width: 880px) 100vw, 380px"
+              />
+              <div style={{ padding: 20 }}>
+                <h3 style={{ font: "600 17px var(--ox-font-sans)", margin: "0 0 7px", color: "var(--ox-ink)" }}>{p.title}</h3>
+                <p style={{ font: "400 13.5px/1.55 var(--ox-font-sans)", color: "var(--ox-text-muted)", margin: "0 0 14px" }}>
+                  {p.summary}
+                </p>
+                <span style={{ font: "600 12.5px var(--ox-font-mono)", color: "var(--ox-accent)" }}>Learn more →</span>
+              </div>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* Services */}
-      <section
-        id="services"
-        className="px-6 sm:px-8 py-16 sm:py-24 border-t border-black/[.06] dark:border-white/[.08]"
-      >
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-8">Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <ServiceCard
-              title="Custom Software"
-              description="Web and backend apps tailored to your business with clean, testable code."
-            />
-            <ServiceCard
-              title="Cloud & DevOps"
-              description="Cloud architecture, CI/CD, and infrastructure-as-code for reliability at scale."
-            />
-            <ServiceCard
-              title="Mobile Development"
-              description="Native-quality iOS and Android apps with modern tooling and performance."
-            />
-            <ServiceCard
-              title="AI & Data"
-              description="Practical AI integrations, data pipelines, and analytics for real impact."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section
-        id="projects"
-        className="px-6 sm:px-8 py-16 sm:py-24 border-t border-black/[.06] dark:border-white/[.08]"
-      >
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between gap-4 mb-4">
-            <h2 className="text-2xl sm:text-3xl font-semibold">Projects</h2>
-          </div>
-          <ProjectsCarousel items={projects as Project[]} />
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section
-        id="contact"
-        className="px-6 sm:px-8 py-16 sm:py-24 border-t border-black/[.06] dark:border-white/[.08]"
-      >
-        <div className="max-w-3xl mx-auto text-center grid gap-6">
-          <h2 className="text-2xl sm:text-3xl font-semibold">
-            Let’s build something great
-          </h2>
-          <p className="text-foreground/80">
-            Tell us about your product or idea and we’ll get back within 1–2
-            business days.
+      {/* about strip */}
+      <section className="ox-aboutstrip" style={{ padding: "0 0 96px" }}>
+        <SectionDivider label="0x.about" />
+        <div>
+          <p
+            style={{ font: "500 26px/1.45 var(--ox-font-sans)", color: "var(--ox-ink)", margin: "0 0 24px", letterSpacing: "-.01em" }}
+          >
+            A small, senior team that ships. We partner with founders and businesses to design, build, and run software
+            that holds up under real load.
           </p>
-          <div className="flex items-center justify-center">
-            <a
-              href="mailto:info@0x.company"
-              className="rounded-full bg-foreground text-background px-6 py-3 font-medium hover:opacity-90 transition"
-            >
-              Contact us
-            </a>
-          </div>
+          <Link href="/about" style={{ font: "600 13.5px var(--ox-font-mono)", color: "var(--ox-accent)" }}>
+            More about us →
+          </Link>
         </div>
+      </section>
+
+      {/* CTA */}
+      <section style={{ padding: "0 0 96px" }}>
+        <CTABanner
+          heading="Let's build something great."
+          body="Tell us about your product or idea and we'll get back within 1–2 business days."
+          actionLabel="Start a project"
+          actionHref="/contact"
+        />
       </section>
     </main>
   );

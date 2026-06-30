@@ -1,46 +1,44 @@
-import Image from "next/image";
 import Link from "next/link";
+import Logo from "@/components/ox/Logo";
+
+const footerLinks: [label: string, href: string][] = [
+  ["Home", "/"],
+  ["Projects", "/projects"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
+];
 
 export default function Footer() {
   return (
-    <footer className="px-6 sm:px-8 py-10 border-t border-black/[.06] dark:border-white/[.08]">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-        <div className="flex items-center gap-3">
-          <Image
-            src="/images/0x-code-limited-icon.png"
-            alt="0x Code Limited"
-            width={24}
-            height={24}
-          />
-          <span>© {new Date().getFullYear()} 0x Code Limited</span>
+    <div className="ox-container">
+      <footer
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 20,
+          flexWrap: "wrap",
+          padding: "30px 0 56px",
+          borderTop: "1px solid var(--ox-line)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: 11 }}>
+          <Logo size={22} />
+          <span style={{ font: "500 12.5px var(--ox-font-mono)", color: "var(--ox-text-faint)" }}>
+            © 2026 0x Code Limited
+          </span>
         </div>
-        <nav className="flex items-center gap-4">
-          <Link
-            href="/#services"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Services
-          </Link>
-          <Link
-            href="/#projects"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/contact"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Contact
-          </Link>
-          <Link
-            href="/privacy.html"
-            className="hover:underline hover:underline-offset-4"
-          >
+        <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
+          {footerLinks.map(([label, href]) => (
+            <Link key={href} href={href} className="ox-link-muted" style={{ font: "500 12.5px var(--ox-font-mono)" }}>
+              {label}
+            </Link>
+          ))}
+          <a href="/privacy.html" className="ox-link-muted" style={{ font: "500 12.5px var(--ox-font-mono)" }}>
             Privacy
-          </Link>
-        </nav>
-      </div>
-    </footer>
+          </a>
+        </div>
+      </footer>
+    </div>
   );
 }

@@ -1,35 +1,318 @@
+/* 0x Code Limited — global stylesheet.
+   Design tokens, base reset, and the interactive state classes (hover/focus)
+   that let the design-system components stay server components.
+   Foundations distilled from the 0x Code design system. */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
+/* ===========================================================================
+   Tokens — dark is the default theme, light is the alternate.
+   =========================================================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand accent (amber / gold) */
+  --ox-amber:           #f2c74e;
+  --ox-amber-hover:     #f7d979;
+  --ox-amber-deep:      #cf9f1f;
+  --ox-amber-faint:     rgba(242, 199, 78, .32);
+  --ox-amber-line:      rgba(242, 199, 78, .40);
+  --ox-amber-line-50:   rgba(242, 199, 78, .50);
+  --ox-on-amber:        #0c0d10;
+  --ox-on-amber-mut:    #3a3115;
+
+  /* Base neutrals (dark) */
+  --ox-bg:              #0b0c0e;
+  --ox-surface:         #101216;
+  --ox-surface-head:    #0c0e11;
+  --ox-inset:           #0b0c0e;
+  --ox-cell:            #0b0c0e;
+  --ox-cell-hover:      #101216;
+
+  /* Ink / text (dark) */
+  --ox-ink:             #f4f2ee;
+  --ox-ink-2:           #e8e6e0;
+  --ox-muted:           #9a9da4;
+  --ox-muted-2:         #6f727a;
+  --ox-placeholder:     #5c5f66;
+
+  /* Lines / borders (dark) */
+  --ox-line:            rgba(255, 255, 255, .08);
+  --ox-line-2:          rgba(255, 255, 255, .10);
+  --ox-line-3:          rgba(255, 255, 255, .16);
+
+  /* Surfaces with transparency */
+  --ox-nav-bg:          rgba(11, 12, 14, .82);
+  --ox-chip:            rgba(255, 255, 255, .05);
+
+  /* Project tile gradient */
+  --ox-tile-1:          #1c2026;
+  --ox-tile-2:          #0d0f12;
+
+  /* Terminal traffic-light dots */
+  --ox-dot-dim:         #3a3d43;
+  --ox-dot-live:        #f2c74e;
+
+  /* Semantic status */
+  --ox-success:         #7ec98f;
+  --ox-error:           #e8836b;
+
+  /* Semantic aliases (theme-agnostic names used by components) */
+  --ox-accent:          var(--ox-amber);
+  --ox-accent-hover:    var(--ox-amber-hover);
+  --ox-text-strong:     var(--ox-ink);
+  --ox-text:            var(--ox-ink-2);
+  --ox-text-muted:      var(--ox-muted);
+  --ox-text-faint:      var(--ox-muted-2);
+  --ox-border:          var(--ox-line);
+  --ox-border-strong:   var(--ox-line-3);
+  --ox-surface-card:    var(--ox-surface);
+
+  /* Typography families */
+  --ox-font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --ox-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Layout */
+  --ox-page-max:   1240px;
+  --ox-page-pad:   56px;
+  --ox-nav-h:      80px;
+
+  /* Motion + elevation */
+  --ox-ease: cubic-bezier(.4, 0, .2, 1);
+  --ox-shadow-panel: 0 30px 80px -34px rgba(0, 0, 0, .50);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light theme — warm paper ground, ink-on-cream, accent darkened for contrast. */
+[data-theme="light"] {
+  --ox-amber:           #7a5d00;
+  --ox-amber-faint:     rgba(122, 93, 0, .55);
+  --ox-amber-deep:      #5c4600;
+
+  --ox-bg:              #f4f1e9;
+  --ox-surface:         #ffffff;
+  --ox-surface-head:    #efece2;
+  --ox-inset:           #faf8f1;
+  --ox-cell:            #ffffff;
+  --ox-cell-hover:      #fbf9f3;
+
+  --ox-ink:             #14130f;
+  --ox-ink-2:           #23211a;
+  --ox-muted:           #5a5648;
+  --ox-muted-2:         #8a8474;
+  --ox-placeholder:     #9a9486;
+
+  --ox-line:            rgba(20, 19, 15, .10);
+  --ox-line-2:          rgba(20, 19, 15, .14);
+  --ox-line-3:          rgba(20, 19, 15, .22);
+
+  --ox-nav-bg:          rgba(244, 241, 233, .82);
+  --ox-chip:            rgba(20, 19, 15, .04);
+
+  --ox-tile-1:          #ece8dc;
+  --ox-tile-2:          #f4f1e9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Amber CTA fill stays amber in BOTH themes so the "on amber" ink reads right. */
+:root, [data-theme="light"] { --ox-amber-fixed: #f2c74e; }
+
+/* ===========================================================================
+   Base
+   =========================================================================== */
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--ox-bg);
+  color: var(--ox-text);
+  font-family: var(--ox-font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Utilities */
-.line-clamp-3 {
-  display: -webkit-box;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+a { text-decoration: none; }
+
+/* Centered content container + horizontal gutter. */
+.ox-container {
+  max-width: var(--ox-page-max);
+  margin: 0 auto;
+  padding: 0 var(--ox-page-pad);
+}
+
+/* Blinking terminal cursor. */
+@keyframes ox-blink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+.ox-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background: var(--ox-accent);
+  transform: translateY(2px);
+  animation: ox-blink 1.1s steps(1) infinite;
+}
+
+/* ===========================================================================
+   Buttons
+   =========================================================================== */
+.ox-btn {
+  font: 600 14px var(--ox-font-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 160ms var(--ox-ease), border-color 160ms var(--ox-ease), color 160ms var(--ox-ease);
+}
+.ox-btn--sm { font-size: 13px; padding: 9px 16px; }
+.ox-btn--lg { padding: 16px 28px; }
+.ox-btn--block { width: 100%; justify-content: center; }
+
+.ox-btn--primary { background: var(--ox-amber-fixed); color: var(--ox-on-amber); }
+.ox-btn--primary:hover { background: var(--ox-amber-hover); }
+
+.ox-btn--secondary { background: transparent; color: var(--ox-text); border-color: var(--ox-border-strong); }
+.ox-btn--secondary:hover { border-color: var(--ox-accent); color: var(--ox-accent); }
+
+.ox-btn--ghost { background: var(--ox-chip); color: var(--ox-text); border-color: var(--ox-line-2); }
+.ox-btn--ghost:hover { border-color: var(--ox-accent); color: var(--ox-accent); }
+
+/* ===========================================================================
+   Links
+   =========================================================================== */
+.ox-link { transition: color 160ms var(--ox-ease); }
+.ox-link-muted { color: var(--ox-text-muted); transition: color 160ms var(--ox-ease); }
+.ox-link-muted:hover { color: var(--ox-accent); }
+
+.ox-nav-link {
+  font: 500 13px var(--ox-font-mono);
+  color: var(--ox-text-muted);
+  transition: color 160ms var(--ox-ease);
+}
+.ox-nav-link:hover { color: var(--ox-accent); }
+.ox-nav-link[data-active="true"] { color: var(--ox-accent); }
+
+/* ===========================================================================
+   Cards
+   =========================================================================== */
+.ox-card {
+  background: var(--ox-surface-card);
+  border: 1px solid var(--ox-line);
   overflow: hidden;
+  transition: border-color 160ms var(--ox-ease);
+}
+.ox-card--interactive { cursor: pointer; }
+.ox-card--interactive:hover { border-color: var(--ox-amber-line-50); }
+
+/* Soft-fill hover for inset rows (project detail "Visit site" rail). */
+.ox-row-link { transition: background 160ms var(--ox-ease); }
+.ox-row-link:hover { background: var(--ox-chip); }
+
+/* ===========================================================================
+   Form fields
+   =========================================================================== */
+.ox-field {
+  width: 100%;
+  background: var(--ox-inset);
+  border: 1px solid var(--ox-line-2);
+  border-radius: 8px;
+  padding: 13px 15px;
+  font: 400 15px var(--ox-font-sans);
+  color: var(--ox-ink);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 160ms var(--ox-ease);
+}
+.ox-field:focus { border-color: var(--ox-accent); }
+.ox-field::placeholder { color: var(--ox-placeholder); }
+textarea.ox-field { line-height: 1.5; resize: vertical; }
+.ox-field--error, .ox-field--error:focus { border-color: var(--ox-error); }
+
+/* ===========================================================================
+   CTA banner dark action button
+   =========================================================================== */
+.ox-cta-action {
+  font: 600 14px var(--ox-font-mono);
+  color: var(--ox-amber-fixed);
+  background: var(--ox-on-amber);
+  padding: 15px 28px;
+  border-radius: 8px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 160ms var(--ox-ease);
+}
+.ox-cta-action:hover { background: #000; }
+
+/* ===========================================================================
+   Theme toggle (glyph swaps with the active theme)
+   =========================================================================== */
+.ox-toggle {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ox-text-muted);
+  background: var(--ox-chip);
+  border: 1px solid var(--ox-line-2);
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 160ms var(--ox-ease), border-color 160ms var(--ox-ease);
+}
+.ox-toggle:hover { color: var(--ox-accent); border-color: var(--ox-accent); }
+.ox-toggle::before { content: "\263E"; }
+[data-theme="light"] .ox-toggle::before { content: "\2600"; }
+
+/* ===========================================================================
+   Page layouts — fixed multi-column grids that collapse to a single column on
+   narrow viewports.
+   =========================================================================== */
+.ox-nav-inner {
+  max-width: var(--ox-page-max);
+  margin: 0 auto;
+  padding: 18px var(--ox-page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ox-hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; padding: 90px 0 104px; }
+.ox-contact-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 60px; padding: 84px 0 100px; align-items: start; }
+.ox-about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 54px; padding: 0 0 90px; border-bottom: 1px solid var(--ox-line); }
+.ox-aboutstrip { display: grid; grid-template-columns: .8fr 1.2fr; gap: 54px; align-items: start; }
+.ox-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 64px; }
+.ox-services { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ox-line); border: 1px solid var(--ox-line); border-radius: 12px; overflow: hidden; }
+.ox-preview { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.ox-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.ox-feature { display: grid; grid-template-columns: 1fr 1.15fr; }
+.ox-detail { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 56px; padding: 56px 0 70px; align-items: start; }
+.ox-detail-aside { position: sticky; top: 90px; }
+.ox-prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+@media (max-width: 880px) {
+  .ox-nav-inner { padding: 16px 24px; }
+  .ox-hero,
+  .ox-contact-grid,
+  .ox-about-grid,
+  .ox-aboutstrip,
+  .ox-principles,
+  .ox-services,
+  .ox-preview,
+  .ox-grid-2,
+  .ox-feature,
+  .ox-detail { grid-template-columns: 1fr; }
+  .ox-hero { padding: 56px 0 64px; gap: 36px; }
+  .ox-contact-grid { padding: 56px 0 72px; gap: 40px; }
+  .ox-detail-aside { position: static; }
+}
+
+@media (max-width: 560px) {
+  .ox-prevnext { grid-template-columns: 1fr; }
+}
+
+/* Big display headings step down on small screens. */
+@media (max-width: 680px) {
+  .ox-h1 { font-size: 40px !important; }
 }

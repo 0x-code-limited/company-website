@@ -1,35 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "0x Code Limited — Modern IT Solutions",
+  metadataBase: new URL("https://www.0x.company"),
+  title: {
+    default: "0x Code Limited — Reliable, scalable software",
+    template: "%s — 0x Code Limited",
+  },
   description:
-    "0x Code Limited builds reliable, scalable software and cloud solutions for modern businesses.",
+    "0x Code Limited is a small, senior team building custom software, cloud infrastructure, and products for modern businesses.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+// Applies the saved theme before first paint so there's no light/dark flash.
+const themeScript = `(function(){try{var t=localStorage.getItem('0x-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Inline, synchronous: runs during HTML parse, before first paint, so there's no theme flash. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
         <Header />
         {children}
         <Footer />
