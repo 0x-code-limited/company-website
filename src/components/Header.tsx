@@ -1,41 +1,52 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Button from "@/components/ox/Button";
+import Logo from "@/components/ox/Logo";
+import ThemeToggle from "@/components/ThemeToggle";
+
+const navLinks: [label: string, href: string][] = [
+  ["home", "/"],
+  ["projects", "/projects"],
+  ["about", "/about"],
+];
 
 export default function Header() {
+  const pathname = usePathname();
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
   return (
-    <header className="px-6 sm:px-8 py-4 border-b border-black/[.06] dark:border-white/[.08]">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/images/0x-code-limited-icon.png"
-            alt="0x Code Limited"
-            width={28}
-            height={28}
-            priority
-          />
-          <span className="font-medium">0x Code Limited</span>
+    <nav
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "var(--ox-nav-bg)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderBottom: "1px solid var(--ox-line)",
+      }}
+    >
+      <div className="ox-nav-inner">
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <Logo />
+          <span style={{ font: "600 15px var(--ox-font-sans)", letterSpacing: ".04em", color: "var(--ox-ink)" }}>
+            0X CODE
+          </span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
-          <Link
-            href="/#services"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Services
-          </Link>
-          <Link
-            href="/#projects"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/contact"
-            className="hover:underline hover:underline-offset-4"
-          >
-            Contact
-          </Link>
-        </nav>
+        <div style={{ display: "flex", alignItems: "center", gap: 26, flexWrap: "wrap" }}>
+          {navLinks.map(([label, href]) => (
+            <Link key={href} href={href} className="ox-nav-link" data-active={isActive(href) ? "true" : "false"}>
+              {label}
+            </Link>
+          ))}
+          <ThemeToggle />
+          <Button href="/contact" size="sm" arrow>
+            start a project
+          </Button>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 }
