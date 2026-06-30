@@ -26,7 +26,7 @@ npm run lint    # eslint (next/core-web-vitals + next/typescript)
 - `src/components/ox/` — the design-system primitives (`Button`, `Eyebrow`, `SectionDivider`, `Tag`, `Chip`, `Card`, `TerminalWindow`, `BracketFrame`, `CTABanner`, `Input`, `Select`, `ProjectMedia`, `Logo`). All are server components styled with inline styles over CSS-variable tokens; hover/focus states live as `.ox-*` classes in `globals.css`. `Header`, `ThemeToggle`, and `ContactForm` are the only client components.
 - `src/lib/projects.ts` — typed loader over the JSON: `Project` interface + helpers (`getProject`, `getFeatured`, `getAdjacent`, `prjLabel`). Import project data from here, not the JSON directly.
 - `src/data/projects.json` — source of truth for every project surface (see "Adding a project").
-- `public/images/` — all project and brand imagery. `image` paths in `projects.json` must match files here.
+- `public/images/` — all project and brand imagery. `images` paths in `projects.json` must match files here.
 - `public/privacy.html` — static privacy page; linked from the footer and embedded by the BC Assessment privacy route.
 - `public/app-ads.txt` — served at site root for ad-network verification; do not move.
 
@@ -49,6 +49,6 @@ Theme is toggled by `ThemeToggle`, which flips `data-theme` on `<html>` and pers
 The `/projects/[id]` route is dynamic, so no route scaffolding is needed — just data + an image:
 
 1. Append an entry to `src/data/projects.json`. Array order is display order (drives the `PRJ.0n` index and prev/next nav). Shape (`Project` in `src/lib/projects.ts`):
-   - Required: `id` (slug), `title`, `initials`, `summary` (card text), `tags` (first renders amber/accent, rest muted), `type`, `platform`, `service`, `lead`, `overview` (string[]), `highlights` (string[]).
-   - Optional: `image` (real screenshot; falls back to the gradient + initials tile), `href` (live site → "Visit live site" button + sidebar "Visit site"), `appStore` / `googlePlay` (render store badges when there's no `href`), `featured` (true → the large feature row on `/projects`).
-2. Drop any referenced `image` into `public/images/`.
+   - Required: `id` (slug), `title`, `initials`, `summary` (card text), `tags` (first renders amber/accent, rest muted), `platform` (`"Web"`, `"Mobile"`, or `"Both"` — the detail sidebar PLATFORM meta), `lead`, `overview` (string[]), `highlights` (string[]).
+   - Optional: `images` (string[] of real screenshots; the first is the primary tile/hero, falls back to the gradient + initials tile when omitted), `href` (live site → "Visit live site" button + sidebar "Visit site"), `appStore` / `googlePlay` (render store badges when there's no `href`), `featured` (true → the large feature row on `/projects`).
+2. Drop any referenced `images` into `public/images/`.

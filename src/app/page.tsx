@@ -101,7 +101,7 @@ export default function Home() {
             <Card key={p.id} href={`/projects/${p.id}`} interactive padded={false} radius={12}>
               <ProjectMedia
                 initials={p.initials}
-                image={p.image}
+                image={p.images?.[0]}
                 height={150}
                 fontSize={30}
                 inset={10}

@@ -8,7 +8,7 @@ import CTABanner from "@/components/ox/CTABanner";
 import Eyebrow from "@/components/ox/Eyebrow";
 import ProjectMedia from "@/components/ox/ProjectMedia";
 import ProjectTags from "@/components/ox/ProjectTags";
-import { getAdjacent, getProject, prjLabel, projects } from "@/lib/projects";
+import { getAdjacent, getProject, platformLabel, prjLabel, projects } from "@/lib/projects";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ id: p.id }));
@@ -91,7 +91,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
         <div>
           <ProjectMedia
             initials={project.initials}
-            image={project.image}
+            image={project.images?.[0]}
             corners={4}
             inset={18}
             size={20}
@@ -130,21 +130,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
 
         {/* meta sidebar */}
         <aside className="ox-detail-aside" style={{ border: "1px solid var(--ox-line)", borderRadius: 14, overflow: "hidden" }}>
-          {(
-            [
-              ["TYPE", project.type],
-              ["PLATFORM", project.platform],
-              ["SERVICES", project.service],
-            ] as const
-          ).map(([label, value], i, rows) => (
-            <div
-              key={label}
-              style={{ padding: "22px 24px", borderBottom: i < rows.length - 1 || liveUrl ? "1px solid var(--ox-line)" : undefined }}
-            >
-              <div style={metaLabel}>{label}</div>
-              <div style={metaValue}>{value}</div>
-            </div>
-          ))}
+          <div style={{ padding: "22px 24px", borderBottom: liveUrl ? "1px solid var(--ox-line)" : undefined }}>
+            <div style={metaLabel}>PLATFORM</div>
+            <div style={metaValue}>{platformLabel(project.platform)}</div>
+          </div>
           {liveUrl && (
             <a
               href={liveUrl}

@@ -1,5 +1,23 @@
 import data from "@/data/projects.json";
 
+/** Detail sidebar — PLATFORM meta. */
+export enum ProjectPlatform {
+  Web = "Web",
+  Mobile = "Mobile",
+  Both = "Both",
+}
+
+/** Category pills shown on cards and the detail hero. */
+export enum ProjectTag {
+  Mobile = "Mobile",
+  Web = "Web",
+  WebApp = "Web App",
+  WebPlatform = "Web Platform",
+  IOSAndroid = "iOS · Android",
+  Education = "Education",
+  Widget = "Widget",
+}
+
 /**
  * Source of truth for everything project-related on the site: the home preview,
  * the projects index (featured row + grid), and each `/projects/[id]` detail
@@ -16,21 +34,17 @@ export interface Project {
   /** One-line description used on cards (home preview + projects grid). */
   summary: string;
   /** Category pills. The first renders as the amber "accent" tag, the rest muted. */
-  tags: string[];
-  /** Detail sidebar — TYPE meta (e.g. "Mobile App"). */
-  type: string;
-  /** Detail sidebar — PLATFORM meta (e.g. "iOS · Android"). */
-  platform: string;
-  /** Detail sidebar — SERVICES meta (e.g. "Custom Software"). */
-  service: string;
+  tags: ProjectTag[];
+  /** Detail sidebar — PLATFORM meta. */
+  platform: ProjectPlatform;
   /** Detail hero lead sentence. */
   lead: string;
   /** Detail "overview" paragraphs. */
   overview: string[];
   /** Detail "what we built" bullet list. */
   highlights: string[];
-  /** Optional real screenshot; falls back to the gradient + initials tile. */
-  image?: string;
+  /** Optional real screenshots; the first is the primary tile/hero. Falls back to the gradient + initials tile when empty. */
+  images?: string[];
   /** Optional live site URL ("Visit live site"). */
   href?: string;
   /** Optional App Store listing — renders a store badge on the detail page. */
@@ -42,6 +56,11 @@ export interface Project {
 }
 
 export const projects: Project[] = data as Project[];
+
+/** Display label for the PLATFORM meta — "Both" reads as "Web - Mobile". */
+export function platformLabel(platform: ProjectPlatform): string {
+  return platform === ProjectPlatform.Both ? "Web - Mobile" : platform;
+}
 
 /** `PRJ.01`-style index label for a project's position in the list. */
 export function prjLabel(index: number): string {

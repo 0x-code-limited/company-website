@@ -5,10 +5,12 @@
     "initials": "MM",
     "featured": true,
     "summary": "A location-based website and mobile app for discovering campgrounds, with full access for the backcountry where signal disappears.",
-    "tags": ["Web App", "Mobile", "iOS · Android"],
-    "type": "Mobile App",
-    "platform": "iOS · Android",
-    "service": "Mobile Development",
+    "tags": [
+      "Web App",
+      "Mobile",
+      "iOS · Android"
+    ],
+    "platform": "Both",
     "href": "https://milemark.camp",
     "lead": "Discover campgrounds near you — even when you are off the grid.",
     "overview": [
@@ -26,11 +28,13 @@
     "title": "Better BC Assessment",
     "initials": "BCA",
     "summary": "A web platform improving user access to property assessment data with clear, usable visuals.",
-    "tags": ["Web Platform"],
-    "type": "Web Platform",
+    "tags": [
+      "Web Platform"
+    ],
     "platform": "Web",
-    "service": "Custom Software",
-    "image": "/images/better-bc-assessment.png",
+    "images": [
+      "/images/better-bc-assessment.png"
+    ],
     "appStore": "https://apps.apple.com/ca/app/better-bc-assessment/id6504163154",
     "googlePlay": "https://play.google.com/store/apps/details?id=com.oxcode.betterbcassessment",
     "lead": "Making property assessment data clear, searchable, and genuinely usable.",
@@ -49,11 +53,14 @@
     "title": "Canadian Citizenship Test",
     "initials": "CCT",
     "summary": "Study guides and practice tests covering all 11 categories of the official \"Discover Canada\" guide.",
-    "tags": ["Web", "Education"],
-    "type": "Web App",
+    "tags": [
+      "Web",
+      "Education"
+    ],
     "platform": "Web",
-    "service": "Custom Software",
-    "image": "/images/canadian-citizenship-test.png",
+    "images": [
+      "/images/canadian-citizenship-test.png"
+    ],
     "href": "https://canada-citizenship.ca/",
     "lead": "Prepare for the citizenship test with confidence.",
     "overview": [
@@ -71,11 +78,13 @@
     "title": "Sync Player App",
     "initials": "SYNC",
     "summary": "A modern sync video player for watching movies together in real time and sharing with friends.",
-    "tags": ["Web App"],
-    "type": "Web App",
+    "tags": [
+      "Web App"
+    ],
     "platform": "Web",
-    "service": "Custom Software",
-    "image": "/images/sync-player.png",
+    "images": [
+      "/images/sync-player.png"
+    ],
     "href": "https://sync-players.vercel.app/",
     "lead": "Watch movies together, perfectly in sync.",
     "overview": [
@@ -93,11 +102,14 @@
     "title": "Exchange Widget",
     "initials": "FX",
     "summary": "A home-screen currency exchange widget with live rates and quick-glance conversions.",
-    "tags": ["Widget", "iOS · Android"],
-    "type": "Home-screen Widget",
-    "platform": "iOS · Android",
-    "service": "Mobile Development",
-    "image": "/images/exchange-widget.png",
+    "tags": [
+      "Widget",
+      "iOS · Android"
+    ],
+    "platform": "Mobile",
+    "images": [
+      "/images/exchange-widget.png"
+    ],
     "appStore": "https://apps.apple.com/us/app/exchangewidget/id6762816436",
     "googlePlay": "https://play.google.com/store/apps/details?id=com.zeroxcode.exchangewidget",
     "lead": "Live exchange rates, right on your home screen.",

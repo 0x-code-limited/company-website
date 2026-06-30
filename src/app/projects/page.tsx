@@ -36,7 +36,7 @@ export default function ProjectsPage() {
         <Card href={`/projects/${featured.id}`} interactive padded={false} className="ox-feature" style={{ marginBottom: 24 }}>
           <ProjectMedia
             initials={featured.initials}
-            image={featured.image}
+            image={featured.images?.[0]}
             label={labelOf(featured)}
             fontSize={56}
             inset={18}
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
             <Card key={p.id} href={`/projects/${p.id}`} interactive padded={false}>
               <ProjectMedia
                 initials={p.initials}
-                image={p.image}
+                image={p.images?.[0]}
                 label={labelOf(p)}
                 height={180}
                 fontSize={40}
